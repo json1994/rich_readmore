@@ -105,11 +105,13 @@ class DemoApp extends StatelessWidget {
                     trimExpandedText: ' Show less',
                     lessStyle: actionTextStyle,
                     moreStyle: actionTextStyle,
-                    onPressReadMore: () {
+                    onPressReadMore: () async {
                       /// specific method to be called on press to show more
+                      return true;
                     },
-                    onPressReadLess: () {
+                    onPressReadLess: () async {
                       /// specific method to be called on press to show less
+                      return true;
                     },
                   ),
                 ),
@@ -136,11 +138,13 @@ class DemoApp extends StatelessWidget {
                     trimExpandedText: ' Collapse ',
                     lessStyle: actionTextStyle.copyWith(fontSize: 18),
                     moreStyle: actionTextStyle.copyWith(fontSize: 18),
-                    onPressReadMore: () {
+                    onPressReadMore: () async {
                       /// specific method to be called on press to show more
+                      return true;
                     },
-                    onPressReadLess: () {
+                    onPressReadLess: () async {
                       /// specific method to be called on press to show less
+                      return true;
                     },
                   ),
                 ),

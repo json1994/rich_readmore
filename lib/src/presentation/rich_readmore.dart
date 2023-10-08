@@ -101,15 +101,19 @@ class _RichReadMoreTextState extends State<RichReadMoreText> {
         isExpanded: _readMore, onTap: _onTapLink, settings: widget.settings);
   }
 
-  void _onTapLink() {
-    setState(() {
-      _readMore = !_readMore;
-      if (_readMore) {
-        widget.settings.onPressReadLess?.call();
-      } else {
-        widget.settings.onPressReadMore?.call();
-      }
-    });
+  void _onTapLink() async {
+    var temp = !_readMore;
+    bool? allow;
+    if (temp) {
+      allow = await widget.settings.onPressReadLess?.call();
+    } else {
+      allow = await widget.settings.onPressReadMore?.call();
+    }
+    if (allow == true) {
+      setState(() {
+        _readMore = temp;
+      });
+    }
   }
 
   @override

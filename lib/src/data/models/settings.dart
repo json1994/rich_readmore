@@ -18,10 +18,10 @@ abstract class ReadMoreSettings {
   final TextStyle? lessStyle;
 
   /// Callback to be called on press to read more
-  final VoidCallback? onPressReadMore;
+  final Future<bool?> Function()? onPressReadMore;
 
   /// Callback to be called on press to read less
-  final VoidCallback? onPressReadLess;
+  final Future<bool?> Function()? onPressReadLess;
 
   ReadMoreSettings({
     required this.trimMode,
