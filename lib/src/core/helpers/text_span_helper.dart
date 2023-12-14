@@ -12,9 +12,12 @@ class TextSpanHelper {
 
   /// Returns a [TextSpan] adding the [actionText] on the children
   TextSpan buildTextSpan(
-          {required TextSpan span, required TextSpan actionText}) =>
+          {required TextSpan span,
+          required TextSpan actionText,
+          TextSpan? textSpan}) =>
       TextSpan(children: [
         span,
+        if (textSpan != null) textSpan,
         actionText,
       ]);
 
@@ -31,15 +34,15 @@ class TextSpanHelper {
         final LengthModeSettings lengthSettings =
             settings as LengthModeSettings;
         if (lengthSettings.trimLength < data.toPlainText().length) {
-          final textSpan = isExpanded ? data.substring(0, endIndex) : data;
+          final textSpan = isExpanded ? data.substring(0, endIndex -3) : data;
           return buildTextSpan(span: textSpan, actionText: actionText);
         } else {
           return data;
         }
       case TrimMode.line:
         if (didExceedMaxLines) {
-          final textSpan = isExpanded ? data.substring(0, endIndex) : data;
-          return buildTextSpan(span: textSpan, actionText: actionText);
+          final textSpan = isExpanded ? data.substring(0, endIndex - 3) : data;
+          return buildTextSpan(span: textSpan, actionText: actionText, textSpan: !isExpanded ? null : TextSpan(text: "...", style: textSpan.style));
         } else {
           return data;
         }
